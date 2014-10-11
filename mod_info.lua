@@ -1,8 +1,8 @@
-name	= "One Click Wonder (40th Post Chose)"
-author	= "BulletMagnet"
-uid		= "9OCW0002"
-version	= 3
-description	= "Single-click on mass- and hydrocarbon-deposits to build them, and automatically rebuild destroyed buildings."
+name	= "One Click Wonder (Dragonfire)"
+author	= "BulletMagnet, Dragonfire"
+uid		= "c5cc7241-d9f8-4b46-8662-ad130e426a4a"
+version	= 4
+description	= "Single-click on mass- and hydrocarbon-deposits to build them, and automatically rebuild destroyed buildings. Dragonfire: build t2/t3 mexes if available"
 selectable	= true
 enabled		= true
 exclusive	= false

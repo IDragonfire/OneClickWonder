@@ -1,0 +1,14 @@
+name	= "One Click Wonder (40th Post Chose)"
+author	= "BulletMagnet"
+uid		= "9OCW0002"
+version	= 3
+description	= "Single-click on mass- and hydrocarbon-deposits to build them, and automatically rebuild destroyed buildings."
+selectable	= true
+enabled		= true
+exclusive	= false
+ui_only		= true
+requires	= {}
+requiresNames	= {}
+conflicts		= {}
+before			= {}
+after			= {"156D4798-5C08-11DD-BEF3-1CB556D89593"}

@@ -21,7 +21,7 @@ do
 				doscript('/lua/dataInit.lua', saveData)
 				doscript(SessionGetScenarioInfo().save, saveData)
 				
-				SPEW('processed Scenario Info.')
+				--SPEW('processed Scenario Info.')
 				
 				deposit_markers = {}
 				
@@ -31,12 +31,12 @@ do
 					end
 				end
 				
-				SPEW('Built marker table.')
+				--SPEW('Built marker table.')
 				for id, col in deposit_markers do
 					for ik, row in col do
 						SPEW(table.getn(row))
 					end
-					SPEW('------')
+					--SPEW('------')
 				end
 			end
 			
@@ -44,19 +44,29 @@ do
 			local rollOver = GetRolloverInfo()
 			local currentCM = CM.GetCommandMode()
 			
+			local numTotal = 0
+			local numT2 = 0
+			local numT3 = 0		
+			if not (selectedUnits == nil) then
+				numTotal = table.getn(selectedUnits)
+				numT2 = table.getn(EntityCategoryFilterDown(categories.TECH2, selectedUnits))
+				numT3 = table.getn(EntityCategoryFilterDown(categories.TECH3, selectedUnits))
+			end
+			
+			
 			--SPEW(1)
 			
 			local availableOrders, availableToggles, buildableCategories = GetUnitCommandData(selectedUnits or {})
 			
 			--	if we mouse-over any of our structures, add it.
 			if rollOver and rollOver.userUnit:GetArmy() == GetFocusArmy() and rollOver.userUnit:IsInCategory('STRUCTURE') then
-				SPEW('added a moused-over structure.')
+				--SPEW('added a moused-over structure.')
 				CM.AddAliveStruct(rollOver.userUnit)
 			end
 			
 			if selectedUnits and rollOver then
 				if CM.IsAutoMode() and not currentCM[2].name == 'RULEUCC_Repair' then
-					SPEW("BLURK!")
+					--SPEW("BLURK!")
 					CM.EndCommandMode(true)
 				end
 				
@@ -100,10 +110,18 @@ do
 							end
 						end
 						
+						
+						
 						if markerTable.type == 'Hydrocarbon' then
 							buildBP = EntityCategoryGetUnitList(buildableCategories * categories.HYDROCARBON * categories.TECH1)[1]
 						else
-							buildBP = EntityCategoryGetUnitList(buildableCategories * categories.MASSEXTRACTION * categories.TECH1)[1]
+							if numT3 == numTotal then
+								buildBP = EntityCategoryGetUnitList(buildableCategories * categories.MASSEXTRACTION * categories.TECH3)[1]
+							elseif (numT2+numT3 == numTotal) then
+								buildBP = EntityCategoryGetUnitList(buildableCategories * categories.MASSEXTRACTION * categories.TECH2)[1]
+							else 
+								buildBP = EntityCategoryGetUnitList(buildableCategories * categories.MASSEXTRACTION * categories.TECH1)[1]
+							end
 						end
 						
 						break

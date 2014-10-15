@@ -15,7 +15,7 @@ do
 			
 			if focus and focus:GetArmy() == unit:GetArmy() and focus:IsInCategory('STRUCTURE') then
 				CM.AddAliveStruct(focus)
-				SPEW('selected unit has a focus structure ' .. table.getn(CM.GetAliveStructs()))
+				--SPEW('selected unit has a focus structure ' .. table.getn(CM.GetAliveStructs()))
 			end
 		end
 		

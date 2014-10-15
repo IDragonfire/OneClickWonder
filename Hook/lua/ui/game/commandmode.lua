@@ -41,22 +41,28 @@ function OnCommandIssued(command)
 	local ent = command.Target.EntityId
 	
 	--	if a structure is being ordered on in any way shape or form, then add it.
-	if ent and GetUnitById(ent):GetArmy() == command.Units[1]:GetArmy() and ent:IsInCategory('STRUCTURE') then
-		AddAliveStruct(ent)
+	if not (ent == null) then
+		if ent and GetUnitById(ent):GetArmy() == command.Units[1]:GetArmy() and ent:IsInCategory('STRUCTURE') then
+			AddAliveStruct(ent)
+		end
 	end
 	
 	for id, unit in command.Units do
 		--	build a list of the player's structures for rebuilding. 
-		if unit:IsInCategory('STRUCTURE') then
-			AddAliveStruct(unit)
-		--	SPEW('structure added itself ' .. table.getn(GetAliveStructs()))
+		if not (unit == null) then
+			if unit:IsInCategory('STRUCTURE') then
+				AddAliveStruct(unit)
+			--	SPEW('structure added itself ' .. table.getn(GetAliveStructs()))
+			end
 		end
 		
 		local focus = unit:GetFocus()
 		
-		if focus and focus:GetArmy() == unit:GetArmy() and focus:IsInCategory('STRUCTURE') then
-			AddAliveStruct(focus)
-			SPEW('something added a structure ' .. table.getn(GetAliveStructs()))
+		if not (focus == null) then
+			if focus and focus:GetArmy() == unit:GetArmy() and focus:IsInCategory('STRUCTURE') then
+				AddAliveStruct(focus)
+				--SPEW('something added a structure ' .. table.getn(GetAliveStructs()))
+			end
 		end
 	end
 end

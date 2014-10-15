@@ -1,7 +1,7 @@
 do
 	--local GameMain = import('/lua/ui/game/gamemain.lua')
 	--
-	SPEW('Init')
+	--SPEW('Init')
 
 	function GetPositionHash(x, z)
 		return tostring(x .. ',' .. z)

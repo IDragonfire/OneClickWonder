@@ -34,7 +34,7 @@ do
 				--SPEW('Built marker table.')
 				for id, col in deposit_markers do
 					for ik, row in col do
-						SPEW(table.getn(row))
+						--SPEW(table.getn(row))
 					end
 					--SPEW('------')
 				end
@@ -73,7 +73,7 @@ do
 				--	ALT+Left repairs any unit/structure (instead of Right issuing a guard/assist).
 				if IsKeyDown('Menu') and table.inverse(availableOrders)['RULEUCC_Repair'] and (rollOver.workProgress < 1 or rollOver.health < rollOver.maxHealth) then
 					CM.StartCommandMode('order', { name = 'RULEUCC_Repair' }, true )
-					SPEW("rep")
+					--SPEW("rep")
 				end
 				
 				return res

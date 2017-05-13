@@ -1,8 +1,8 @@
 do
-	local CM = import('/lua/ui/game/commandmode.lua')
 
 	local oldOnSelectionChanged = OnSelectionChanged
 	function OnSelectionChanged(old, new, added, removed)
+        local CM = import('/lua/ui/game/commandmode.lua')
 		
 		for id, unit in added do
 			--	build a list of the player's structures for rebuilding. 

@@ -47,6 +47,7 @@ do
 	
 	local oldOnSync = OnSync
 	function OnSync()
+		oldOnSync()
 		local CM = import('/lua/ui/game/commandmode.lua')
 		
 		for id, v in Sync.ReleaseIds do
@@ -75,6 +76,5 @@ do
 			end			
 		end
 		
-		oldOnSync()
 	end
 end
